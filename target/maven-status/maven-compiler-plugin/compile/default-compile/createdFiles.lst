@@ -1,0 +1,5 @@
+org\saryrndeth\demo2\Demo2.class
+org\saryrndeth\demo2\commands\GiveDia.class
+org\saryrndeth\demo2\commands\Help.class
+org\saryrndeth\demo2\ItemManager.class
+org\saryrndeth\demo2\event\BreakEvent.class

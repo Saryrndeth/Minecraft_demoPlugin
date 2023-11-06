@@ -1,0 +1,9 @@
+name: demo2
+version: '${project.version}'
+main: org.saryrndeth.demo2.Demo2
+api-version: '1.20'
+commands:
+  thelp:
+    description: help command
+    aliases:
+      - thelp2
