@@ -10,7 +10,6 @@ public final class Demo2 extends JavaPlugin {
     @Override
     public void onEnable() {
         getLogger().info("Plugin active!");
-        getServer().getPluginManager().registerEvents(new BreakEvent(), this);
         getServer().getPluginManager().registerEvents(new InvClickEvent(), this);
         getServer().getPluginCommand("thelp").setExecutor(new Help());
         getServer().getPluginCommand("topeninv").setExecutor(new OpenInv());

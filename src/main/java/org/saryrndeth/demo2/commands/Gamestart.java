@@ -20,6 +20,10 @@ public class Gamestart implements CommandExecutor{
         }
         Player player = (Player) commandSender;
         /* stop players' movement */
+        Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "gamerule naturalRegeneration false");
+        Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "time set day");
+        Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "weather clear");
+        Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "effect give @a minecraft:slowness 1000000 255 true");
         Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "effect give @a minecraft:blindness 1000000 255 true");
         Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "effect give @a minecraft:resistance 1000000 255 true");
         Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "effect give @a minecraft:regeneration 1000000 255 true");
@@ -29,6 +33,8 @@ public class Gamestart implements CommandExecutor{
         pos[1] = player.getLocation().getY();
         pos[2] = player.getLocation().getZ();
         Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "fill " + (int) Math.round(pos[0] - 10) + " " + (int) Math.round(pos[1] - 1) + " " + (int) Math.round(pos[2] - 10) + " " + (int) Math.round(pos[0] + 10) + " " + (int) Math.round(pos[1] + 10) + " " + (int) Math.round(pos[2] + 10) + " bedrock hollow");
+        Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "kill @e[type=item]");
+        Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "clear @a");
         Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "tp @a " + pos[0] + " " + pos[1] + " " + pos[2]);
         Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "gamemode survival @a");
         Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "worldborder center " + pos[0] + " " + pos[2]);
@@ -55,14 +61,24 @@ public class Gamestart implements CommandExecutor{
                                 /* sleep five seconds */
                                 new BukkitRunnable(){
                                     public void run() {
+                                        Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "title @a clear");
                                         Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "title @a title {\"text\": \"무적시간:" + "\",\"color\":\"white\"}");
                                         new BukkitRunnable(){
                                             public void run() {
                                                 Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "title @a title {\"text\": \"무적시간: " + inv + "\",\"color\":\"white\"}");
-
-
-                                                Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "effect clear @a");
-                                                Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "fill " + (int) Math.round(pos[0] - 10) + " " + (int) Math.round(pos[1] - 1) + " " + (int) Math.round(pos[2] - 10) + " " + (int) Math.round(pos[0] + 10) + " " + (int) Math.round(pos[1] + 10) + " " + (int) Math.round(pos[2] + 10) + " air");
+                                                new BukkitRunnable() {
+                                                    @Override
+                                                    public void run() {
+                                                        readyCount();
+                                                        new BukkitRunnable() {
+                                                            @Override
+                                                            public void run() {
+                                                                Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "effect clear @a");
+                                                                Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "fill " + (int) Math.round(pos[0] - 10) + " " + (int) Math.round(pos[1] - 1) + " " + (int) Math.round(pos[2] - 10) + " " + (int) Math.round(pos[0] + 10) + " " + (int) Math.round(pos[1] + 10) + " " + (int) Math.round(pos[2] + 10) + " air");
+                                                                Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "effect give @a resistance " + inv + " 255 true");
+                                                            }}.runTaskLater(Demo2.getPlugin(Demo2.class), 100);
+                                                    };
+                                                }.runTaskLater(Demo2.getPlugin(Demo2.class), 40);
 
                                             }
                                         }.runTaskLater(Demo2.getPlugin(Demo2.class), 60);
@@ -77,4 +93,39 @@ public class Gamestart implements CommandExecutor{
 
         return false;
     }
+
+    private void readyCount() {
+        Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "title @a actionbar 5");
+        new BukkitRunnable() {
+            @Override
+            public void run() {
+                Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "title @a actionbar 4");
+                new BukkitRunnable() {
+                    @Override
+                    public void run() {
+                        Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "title @a actionbar 3");
+                        new BukkitRunnable() {
+                            @Override
+                            public void run() {
+                                Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "title @a actionbar 2");
+                                new BukkitRunnable() {
+                                    @Override
+                                    public void run() {
+                                        Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "title @a actionbar 1");
+                                        new BukkitRunnable() {
+                                            @Override
+                                            public void run() {
+                                                Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "title @a actionbar \"test\": \"게임시작!\"");
+                                            };
+                                        }.runTaskLater(Demo2.getPlugin(Demo2.class), 20);
+                                    };
+                                }.runTaskLater(Demo2.getPlugin(Demo2.class), 20);
+                            };
+                        }.runTaskLater(Demo2.getPlugin(Demo2.class), 20);
+                    };
+                }.runTaskLater(Demo2.getPlugin(Demo2.class), 20);
+            };
+        }.runTaskLater(Demo2.getPlugin(Demo2.class), 20);
+    }
+
 }
