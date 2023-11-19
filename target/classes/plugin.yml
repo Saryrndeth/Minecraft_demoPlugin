@@ -7,13 +7,15 @@ commands:
     description: help command
     aliases:
       - thelp2
-  tgivedia:
-    description: givedia
-  topeninv:
+  openinv:
     description: open gui
   gamestart:
+    aliases:
+      - 게임시작
     description: start the game
   중심:
     description: 중심
   test:
     description: test
+  자기장:
+    description: 자기장

@@ -16,7 +16,7 @@ public class Center implements CommandExecutor {
             player.sendMessage("중심이 설정되지 않았습니다.");
             return false;
         }
-        Bukkit.broadcastMessage("중심: " + (int) Math.round(Gamestart.pos[0]) + ", " + (int) Math.round(Gamestart.pos[2]));
+        player.sendMessage("중심: " + (int) Math.round(Gamestart.pos[0]) + ", " + (int) Math.round(Gamestart.pos[2]));
         return false;
     }
 }

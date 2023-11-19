@@ -12,10 +12,11 @@ public final class Demo2 extends JavaPlugin {
         getLogger().info("Plugin active!");
         getServer().getPluginManager().registerEvents(new InvClickEvent(), this);
         getServer().getPluginCommand("thelp").setExecutor(new Help());
-        getServer().getPluginCommand("topeninv").setExecutor(new OpenInv());
+        getServer().getPluginCommand("openinv").setExecutor(new OpenInv());
         getServer().getPluginCommand("gamestart").setExecutor(new Gamestart());
         getServer().getPluginCommand("중심").setExecutor(new Center());
         getServer().getPluginCommand("test").setExecutor(new Test());
+        getServer().getPluginCommand("자기장").setExecutor(new Getwidth());
         // Plugin startup logic
 
     }

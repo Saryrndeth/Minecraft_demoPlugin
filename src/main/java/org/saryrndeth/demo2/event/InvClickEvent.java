@@ -5,6 +5,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.inventory.Inventory;
 
 public class InvClickEvent implements Listener {
 
@@ -12,10 +13,10 @@ public class InvClickEvent implements Listener {
     public void onClick(InventoryClickEvent e) {
         if(e.getClickedInventory() == null) return;
 
-        if(ChatColor.stripColor(e.getView().getTitle()).equalsIgnoreCase("TEST GUI")) {
+        Player player = (Player) e.getWhoClicked();
+        Inventory inv = e.getClickedInventory();
+        if(inv != null && player.getOpenInventory().getTopInventory().equals(inv)) {
             e.setCancelled(true);
-            Player player = (Player) e.getWhoClicked();
-            player.sendMessage("인벤토리 클릭이 취소되었습니다.");
         }
     }
 }

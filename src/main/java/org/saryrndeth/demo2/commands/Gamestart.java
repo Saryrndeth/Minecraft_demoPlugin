@@ -28,6 +28,7 @@ public class Gamestart implements CommandExecutor{
         Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "effect give @a minecraft:resistance 1000000 255 true");
         Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "effect give @a minecraft:regeneration 1000000 255 true");
         Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "effect give @a minecraft:mining_fatigue 1000000 255 true");
+        Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "advancement revoke @a everything");
         /* get player's pos*/
         pos[0] = player.getLocation().getX();
         pos[1] = player.getLocation().getY();
@@ -38,6 +39,7 @@ public class Gamestart implements CommandExecutor{
         Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "tp @a " + pos[0] + " " + pos[1] + " " + pos[2]);
         Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "gamemode survival @a");
         Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "worldborder center " + pos[0] + " " + pos[2]);
+        Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "setworldspawn " + pos[0] + " " + pos[1] + " " + pos[2]);
         int num = (int) Math.round(Math.random() * 10000);
         Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "worldborder set " + num);
         Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "title @a title {\"text\": \"설정중...\",\"color\":\"red\"}");
@@ -115,7 +117,7 @@ public class Gamestart implements CommandExecutor{
                                         new BukkitRunnable() {
                                             @Override
                                             public void run() {
-                                                Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "title @a actionbar \"test\": \"게임시작!\"");
+                                                Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "title @a actionbar \"text\": \"게임시작!\"");
                                             };
                                         }.runTaskLater(Demo2.getPlugin(Demo2.class), 20);
                                     };
